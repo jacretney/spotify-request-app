@@ -1,12 +1,17 @@
+/**
+ * SearchController
+ *
+ * /api/v1/search
+ */
+
 const express = require('express');
-const cors = require('cors')
-const app = express();
-const port = 8080;
+const Router = express.Router();
 
-app.use(cors());
-
-
-app.get('/', (req, res) => {
+/**
+ * @param {Request} req The request URL
+ * @param {Response} res The response data
+ */
+Router.get('/', async (req, res) => {
   res.json([
     {
       id: 1,
@@ -27,8 +32,6 @@ app.get('/', (req, res) => {
       img: "https://i.scdn.co/image/ab67616d00001e02fd9d0b51b8009920a7227d04"
     }
   ]);
-})
+});
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-})
+module.exports = Router;
