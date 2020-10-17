@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
+import { debounce } from 'lodash';
 
 import Header from './components/ui/Header';
 import Search from './components/ui/Search';
 import SongGrid from './components/songs/SongGrid';
+
 import './App.css';
 
 function App() {
@@ -11,15 +13,17 @@ function App() {
   const [ isLoading, setIsLoading ] = useState(true);
   const [ query, setQuery ] = useState('');
 
+  // TOOD: This needs to be debounced
   useEffect(() => {
     const fetchSongs = async () => {
+      setIsLoading(true);
       const result = await Axios(`http://localhost/search?q=${query}`);
 
       setSongs(result.data);
       setIsLoading(false);
     }
 
-    fetchSongs();
+    debounce(() => fetchSongs(), 500)();
   }, [query]);
 
 

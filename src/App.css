@@ -34,6 +34,12 @@ input[type='text'] {
   margin: 24px 0;
 }
 
+.spinner {
+  width: 50px; 
+  margin: auto;
+  display: block
+}
+
 /* TODO: This is not responsive */
 .song-grid {
   display: grid;
@@ -46,6 +52,10 @@ input[type='text'] {
   width: 300px;
   border: 1px solid #efefef;
   border-radius: 5px;
+}
+
+.song-card img {
+  width: 300px;
 }
 
 .song-card h3, .song-card h4 {

@@ -1,4 +1,5 @@
 import React from 'react';
+import Spinner from '../ui/Spinner';
 
 const SongGrid = ({ isLoading, songs }) => {
   const parseSongData = (song) => {
@@ -18,22 +19,27 @@ const SongGrid = ({ isLoading, songs }) => {
         </div>
       )
     }
-    return songs.map((song) => {
-      const parsed = parseSongData(song);
-
-      return (
-        <div className="song-card" key={parsed.id}>
-          <img src={parsed.img} alt={`${parsed.title} by ${parsed.artist}`}/>
-          <h3>{parsed.title}</h3>
-          <h4>{parsed.artist}</h4>
-        </div>
-      )
-    });
+    
+    return (
+      <div className="song-grid">
+        {songs.map((song) => {
+            const parsed = parseSongData(song);
+      
+            return (
+              <div className="song-card" key={parsed.id}>
+                <img src={parsed.img} alt={`${parsed.title} by ${parsed.artist}`}/>
+                <h3>{parsed.title}</h3>
+                <h4>{parsed.artist}</h4>
+              </div>
+            )
+          })}
+      </div>
+    )
   }
 
   return (
-    <div className="song-grid">
-      {isLoading ? <p>Loading</p> : showSongs(songs)}
+    <div>
+      {isLoading ? <Spinner /> : showSongs(songs)}
     </div>
   )
 }
