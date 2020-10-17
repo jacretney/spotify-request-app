@@ -14,7 +14,8 @@ const AxiosSpotifyService = require('../../../../core/service/AxiosSpotifyServic
  * @param {Response} res The response data
  */
 Router.get('/', async (req, res) => {
-  const result = await AxiosSpotifyService.search();
+  const service = new AxiosSpotifyService();
+  const result = await service.search();
   res.json(result);
 });
 
