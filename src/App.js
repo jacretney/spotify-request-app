@@ -24,7 +24,7 @@ function App() {
 
 
   return (
-    <div className="container">
+    <div className="App">
       <Header />
       <Search getQuery={(text) => setQuery(text)} />
       <SongGrid songs={songs} isLoading={isLoading}/>

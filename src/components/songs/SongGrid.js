@@ -2,7 +2,7 @@ import React from 'react';
 
 const SongGrid = ({ isLoading, songs }) => {
   return (
-    <div>
+    <div className="song-grid">
       {isLoading ? <p>Loading</p> : songs.map((song) => {
         return (
           <div className="song-card" key={song.id}>
