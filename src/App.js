@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     const fetchSongs = async () => {
-      const result = await Axios(`http://localhost:8080?query=${query}`);
+      const result = await Axios(`http://localhost/search?query=${query}`);
 
       setSongs(result.data);
       setIsLoading(false);
