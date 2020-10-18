@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import { debounce } from 'lodash';
+import {ToastContainer} from 'react-toastify';
+import notify from './common/Notify';
 
 import Header from './components/ui/Header';
 import Search from './components/ui/Search';
@@ -17,13 +18,19 @@ function App() {
   useEffect(() => {
     const fetchSongs = async () => {
       setIsLoading(true);
-      const result = await Axios(`http://localhost/search?q=${query}`);
 
-      setSongs(result.data);
+      try {
+        const result = await Axios(`http://localhost/search?q=${query}`);
+        setSongs(result.data);
+      } catch (e) {
+        console.log('fuckkk');
+        notify.error('An error occurred fetching results, please try again later.');
+      }
+      
       setIsLoading(false);
     }
 
-    debounce(() => fetchSongs(), 500)();
+    fetchSongs();
   }, [query]);
 
 
@@ -32,6 +39,7 @@ function App() {
       <Header />
       <Search getQuery={(text) => setQuery(text)} />
       <SongGrid songs={songs} isLoading={isLoading}/>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }
