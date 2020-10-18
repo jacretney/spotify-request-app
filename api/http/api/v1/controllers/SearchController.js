@@ -4,10 +4,10 @@
  * /api/v1/search
  */
 
-const express = require('express');
-const Router = express.Router();
+import express from 'express';
+import AxiosSpotifyService from '../../../../core/service/AxiosSpotifyService';
 
-const AxiosSpotifyService = require('../../../../core/service/AxiosSpotifyService');
+const Router = express.Router();
 
 /**
  * @param {Request} req The request URL
@@ -20,4 +20,4 @@ Router.get('/', async (req, res) => {
   res.json(result);
 });
 
-module.exports = Router;
+export default Router;

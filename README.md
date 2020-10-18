@@ -19,6 +19,6 @@
 - Ensure layout is responsive
 - Improve design
 - Tidy up AxiosSpotifyService implementation
-- Switch to import syntax on the API
+- ~Switch to import syntax on the API~
 - Tests
 - CI

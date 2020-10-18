@@ -1,4 +1,4 @@
-const Axios = require('axios');
+import Axios from 'axios';
 
 class AxiosSpotifyService {
   constructor() {
@@ -94,4 +94,4 @@ class AxiosSpotifyService {
   }
 }
 
-module.exports = AxiosSpotifyService;
+export default AxiosSpotifyService;

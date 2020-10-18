@@ -1,6 +1,6 @@
-const express = require('express');
-const cors = require('cors');
-const SearchController = require('./api/v1/controllers/SearchController');
+import express from 'express';
+import cors from 'cors';
+import SearchController from './api/v1/controllers/SearchController';
 const app = express();
 
 /**
@@ -15,4 +15,4 @@ app.use(
     '/search', SearchController,
 );
 
-module.exports = app;
+export default app;
