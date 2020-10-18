@@ -1,34 +1,48 @@
 const Axios = require('axios');
 
 class AxiosSpotifyService {
+  constructor() {
+    this.baseUrl = "https://api.spotify.com/v1";
+    this.searchType = "track";
+    this.auth = {};
+  }
+
   search = async (query) => {
     if (!query) {
       return [];
     }
 
-    const auth = await this.authorize();
-    const type = "track"; // TODO: Should this be configurable?
+    try {    
+      this.auth = await this.authorize();
+      
+      const searchUrl = `${this.baseUrl}/search?q=${query}&type=${this.searchType}`;
 
-    const result = await Axios({
-      url: `https://api.spotify.com/v1/search?q=${query}&type=${type}`,
+      const searchResults = await this.fetch(searchUrl, this.auth.access_token);
+      const trackIds = this.getTrackIds(searchResults.data.tracks);
+      const trackUrl = `${this.baseUrl}/tracks?ids=${trackIds.join(',')}`;
+
+      const tracks = await this.fetch(trackUrl, this.auth.access_token);
+      const formattedTracks = this.formatTracks(tracks.data.tracks);
+
+      return formattedTracks;
+    } catch(e) {
+      console.log(e);
+
+      return {
+        "error": e,
+        "message": "Could not return tracks"
+      }
+    }
+  }
+
+  fetch = async (url, token) => {
+    return await Axios({
+      url: url,
       method: "get",
       headers: {
-          "Authorization": `Bearer ${auth.access_token}`,
+          "Authorization": `Bearer ${token}`,
       },
     })
-
-    const trackIds = this.getTrackIds(result.data.tracks);
-
-    const tracks = await Axios({
-      url: `https://api.spotify.com/v1/tracks?ids=${trackIds.join(',')}`,
-      method: "get",
-      headers: {
-          "Authorization": `Bearer ${auth.access_token}`,
-      },
-    })
-
-    const formattedTracks = this.formatTracks(tracks.data.tracks);
-    return formattedTracks;
   }
 
   getTrackIds = (data) => {

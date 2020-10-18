@@ -11,6 +11,7 @@
 - Admin interface
 - Rooms
 - Submit requests
+- Song previews
 
 ### Todo - Improvements
 - Error handling
