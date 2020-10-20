@@ -11,28 +11,33 @@ import './App.css';
 
 function App() {
   const [ songs, setSongs ] = useState([]);
-  const [ isLoading, setIsLoading ] = useState(true);
+  const [ isLoading, setIsLoading ] = useState(false);
   const [ query, setQuery ] = useState('');
 
-  // TOOD: This needs to be debounced
-  useEffect(() => {
-    const fetchSongs = async () => {
-      setIsLoading(true);
+  const fetchSongs = async (query) => {
+    setIsLoading(true);
 
-      try {
-        const result = await Axios(`http://localhost/search?q=${query}`);
-        setSongs(result.data);
-      } catch (e) {
-        console.log('fuckkk');
-        notify.error('An error occurred fetching results, please try again later.');
-      }
-      
-      setIsLoading(false);
+    try {
+      const result = await Axios(`http://localhost/search?q=${query}`);
+      setSongs(result.data);
+    } catch (e) {
+      console.error(e);
+      notify.error('An error occurred fetching results, please try again later.');
     }
 
-    fetchSongs();
-  }, [query]);
+    setIsLoading(false);
+  }
 
+  useEffect(() => {
+    let timer; 
+    if (query) {
+      timer = setTimeout(() => {
+        fetchSongs(query);
+      }, 500);
+    }
+
+    return () => { clearTimeout(timer) };
+  }, [query]);
 
   return (
     <div className="App">
