@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import {ToastContainer} from 'react-toastify';
 
-import Header from './components/ui/Header';
-import Search from './components/ui/Search';
-import SongGrid from './components/songs/SongGrid';
-
-import './App.css';
+import Header from '../components/ui/Header';
+import Search from '../components/ui/SearchBar';
+import SongGrid from '../components/songs/SongGrid';
 
 function App() {
   const [ songs, setSongs ] = useState([]);
@@ -29,7 +26,6 @@ function App() {
       <Header />
       <Search updateQuery={updateQuery} updateIsLoading={updateIsLoading} updateSongs={updateSongs} />
       <SongGrid songs={songs} isLoading={isLoading} />
-      <ToastContainer></ToastContainer>
     </div>
   );
 }
