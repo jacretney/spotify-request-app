@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "api:dev": "nodemon index.js",
-    "lint:check": "node ./node_modules/eslint/bin/eslint.js ./core ./http -c ./eslintrc.json",
-    "lint:fix": "node ./node_modules/eslint/bin/eslint.js ./core ./http -c ./eslintrc.json"
+    "lint:check": "node ./node_modules/eslint/bin/eslint.js ./core ./http -c ./.eslintrc.json",
+    "lint:fix": "node ./node_modules/eslint/bin/eslint.js ./core ./http -c ./.eslintrc.json"
   },
   "author": "",
   "license": "ISC",
