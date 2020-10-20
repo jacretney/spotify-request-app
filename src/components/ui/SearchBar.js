@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+
 import Axios from 'axios';
 import notify from '../../common/Notify';
 
-const Search = ({ updateQuery, updateIsLoading, updateSongs }) => {
+const Search = ({ updateIsLoading, updateSongs }) => {
   const [text, setText] = useState('');
 
-  const onChange = (text) => {
-    setText(text);
-    updateQuery(text);
+  const onChange = (data) => {
+    setText(data);
   };
 
-  const fetchSongs = async (text) => {
+  const fetchSongs = async () => {
     updateIsLoading(true);
 
     try {
       const result = await Axios(`http://localhost/search?q=${text}`);
       updateSongs(result.data);
     } catch (e) {
-      console.error(e);
       notify.error('An error occurred fetching results, please try again later.');
     }
 
@@ -44,11 +44,15 @@ const Search = ({ updateQuery, updateIsLoading, updateSongs }) => {
           placeholder="Search for a song..."
           value={text}
           onChange={(e) => onChange(e.target.value)}
-          autoFocus
         />
       </form>
     </section>
   );
+};
+
+Search.propTypes = {
+  updateIsLoading: PropTypes.func.isRequired,
+  updateSongs: PropTypes.func.isRequired,
 };
 
 export default Search;

@@ -7,7 +7,6 @@ import SongGrid from '../components/songs/SongGrid';
 function App() {
   const [songs, setSongs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [query, setQuery] = useState('');
 
   const updateSongs = (data) => {
     setSongs(data);
@@ -17,14 +16,13 @@ function App() {
     setIsLoading(data);
   };
 
-  const updateQuery = (data) => {
-    setQuery(data);
-  };
-
   return (
     <div className="App">
       <Header />
-      <Search updateQuery={updateQuery} updateIsLoading={updateIsLoading} updateSongs={updateSongs} />
+      <Search
+        updateIsLoading={updateIsLoading}
+        updateSongs={updateSongs}
+      />
       <SongGrid songs={songs} isLoading={isLoading} />
     </div>
   );

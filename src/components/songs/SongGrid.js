@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Spinner from '../ui/Spinner';
 
 const SongGrid = ({ isLoading, songs }) => {
@@ -9,7 +11,7 @@ const SongGrid = ({ isLoading, songs }) => {
     artist: song.artist.name,
   });
 
-  const showSongs = (songs) => {
+  const showSongs = () => {
     if (songs.length === 0) {
       return (
         <div>
@@ -40,6 +42,11 @@ const SongGrid = ({ isLoading, songs }) => {
       {isLoading ? <Spinner /> : showSongs(songs)}
     </div>
   );
+};
+
+SongGrid.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  songs: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default SongGrid;

@@ -7,8 +7,8 @@ const Home = () => {
   const history = useHistory();
   const [text, setText] = useState('');
 
-  const onChange = (text) => {
-    setText(text);
+  const onChange = (data) => {
+    setText(data);
   };
 
   const joinParty = () => {
@@ -16,7 +16,7 @@ const Home = () => {
   };
 
   const createParty = () => {
-    console.log('will create a Party');
+    history.push(`/party/${text}/admin`);
   };
 
   return (
@@ -30,11 +30,10 @@ const Home = () => {
           placeholder="eg. 12345"
           value={text}
           onChange={(e) => onChange(e.target.value)}
-          autoFocus
         />
-        <button onClick={joinParty}>Join party</button>
+        <button onClick={joinParty} type="submit">Join party</button>
         <h2>Or...</h2>
-        <button onClick={createParty}>Create a Party</button>
+        <button onClick={createParty} type="submit">Create a Party</button>
       </div>
     </div>
   );

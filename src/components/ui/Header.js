@@ -13,13 +13,13 @@ const Header = () => {
     history.push('/');
   };
 
-  const getTemplate = (partyId) => {
+  const getTemplate = () => {
     if (!partyId) {
       return (
         <header>
           <p className="branding">Song Requests App</p>
           <p className="party-id" />
-          <button className="party-button">Join a party</button>
+          <button className="party-button" type="submit">Join a party</button>
         </header>
       );
     }
@@ -31,7 +31,7 @@ const Header = () => {
           Party ID:
           {partyId}
         </p>
-        <button className="party-button" onClick={leaveParty}>Leave party</button>
+        <button className="party-button" onClick={leaveParty} type="submit">Leave party</button>
       </header>
     );
   };
