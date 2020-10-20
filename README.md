@@ -15,7 +15,7 @@
 
 ### Todo - Improvements
 - Error handling
-- Debounce search requests
+- ~Debounce search requests~
 - Ensure layout is responsive
 - Improve design
 - ~Tidy up AxiosSpotifyService implementation~

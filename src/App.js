@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import Axios from 'axios';
+import React, { useState } from 'react';
 import {ToastContainer} from 'react-toastify';
-import notify from './common/Notify';
 
 import Header from './components/ui/Header';
 import Search from './components/ui/Search';
@@ -14,36 +12,23 @@ function App() {
   const [ isLoading, setIsLoading ] = useState(false);
   const [ query, setQuery ] = useState('');
 
-  const fetchSongs = async (query) => {
-    setIsLoading(true);
-
-    try {
-      const result = await Axios(`http://localhost/search?q=${query}`);
-      setSongs(result.data);
-    } catch (e) {
-      console.error(e);
-      notify.error('An error occurred fetching results, please try again later.');
-    }
-
-    setIsLoading(false);
+  const updateSongs = (data) => {
+    setSongs(data);
   }
 
-  useEffect(() => {
-    let timer; 
-    if (query) {
-      timer = setTimeout(() => {
-        fetchSongs(query);
-      }, 500);
-    }
+  const updateIsLoading = (data) => {
+    setIsLoading(data);
+  }
 
-    return () => { clearTimeout(timer) };
-  }, [query]);
+  const updateQuery = (data) => {
+    setQuery(data);
+  }
 
   return (
     <div className="App">
       <Header />
-      <Search getQuery={(text) => setQuery(text)} />
-      <SongGrid songs={songs} isLoading={isLoading}/>
+      <Search updateQuery={updateQuery} updateIsLoading={updateIsLoading} updateSongs={updateSongs} />
+      <SongGrid songs={songs} isLoading={isLoading} />
       <ToastContainer></ToastContainer>
     </div>
   );
