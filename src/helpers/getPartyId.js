@@ -3,6 +3,6 @@ const getPartyId = (location) => {
   if (path[2]) {
     return path[2];
   }
-}
+};
 
 export default getPartyId;

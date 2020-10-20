@@ -10,9 +10,12 @@ const PartyAdmin = () => {
   return (
     <div className="App">
       <Header />
-      <p>Your room ID is: {getPartyId(location)}</p>
+      <p>
+        Your room ID is:
+        {getPartyId(location)}
+      </p>
     </div>
-  )
-}
+  );
+};
 
-export default PartyAdmin
+export default PartyAdmin;

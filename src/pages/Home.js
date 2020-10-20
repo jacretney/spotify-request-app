@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import Header from '../components/ui/Header';
 
@@ -9,25 +9,25 @@ const Home = () => {
 
   const onChange = (text) => {
     setText(text);
-  }
+  };
 
   const joinParty = () => {
     history.push(`/party/${text}/search`);
-  }
+  };
 
   const createParty = () => {
     console.log('will create a Party');
-  }
+  };
 
   return (
     <div className="App">
       <Header />
       <div>
         <h2>Enter your party code to join...</h2>
-        <input 
-          type="text" 
-          className="form-control" 
-          placeholder="eg. 12345" 
+        <input
+          type="text"
+          className="form-control"
+          placeholder="eg. 12345"
           value={text}
           onChange={(e) => onChange(e.target.value)}
           autoFocus
@@ -37,7 +37,7 @@ const Home = () => {
         <button onClick={createParty}>Create a Party</button>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Home;

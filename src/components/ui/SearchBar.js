@@ -8,7 +8,7 @@ const Search = ({ updateQuery, updateIsLoading, updateSongs }) => {
   const onChange = (text) => {
     setText(text);
     updateQuery(text);
-  }
+  };
 
   const fetchSongs = async (text) => {
     updateIsLoading(true);
@@ -22,7 +22,7 @@ const Search = ({ updateQuery, updateIsLoading, updateSongs }) => {
     }
 
     updateIsLoading(false);
-  }
+  };
 
   useEffect(() => {
     let timer;
@@ -32,23 +32,23 @@ const Search = ({ updateQuery, updateIsLoading, updateSongs }) => {
       }, 500);
     }
 
-    return () => { clearTimeout(timer) };
+    return () => { clearTimeout(timer); };
   }, [text]);
 
   return (
     <section className="search">
       <form>
-        <input 
-          type="text" 
-          className="form-control" 
-          placeholder="Search for a song..." 
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Search for a song..."
           value={text}
           onChange={(e) => onChange(e.target.value)}
           autoFocus
         />
       </form>
     </section>
-  )
-}
+  );
+};
 
 export default Search;
