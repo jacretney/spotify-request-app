@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import SearchController from './api/v1/controllers/SearchController';
+
 const app = express();
 
 /**
@@ -12,7 +13,7 @@ app.use(cors());
  * Routes => Controllers
  */
 app.use(
-    '/search', SearchController,
+  '/search', SearchController,
 );
 
 export default app;
