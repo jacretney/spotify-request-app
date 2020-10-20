@@ -12,16 +12,17 @@ jobs:
       working-directory: api
 
     - name: Run ESLint
-      run: cd api && npm run lint:check
-  
-  frontend:
-    name: "Lint frontend"
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Install modules
-      run: npm install
-
-    - name: Run ESLint
       run: npm run lint:check
+      working-directory: api
+  
+  # frontend:
+  #   name: "Lint frontend"
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v2
+
+  #   - name: Install modules
+  #     run: npm install
+
+  #   - name: Run ESLint
+  #     run: npm run lint:check
